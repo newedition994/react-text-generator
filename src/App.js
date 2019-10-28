@@ -4,6 +4,8 @@ import "./App.css";
 import axios from "axios";
 
 import Output from "./components/Output";
+import Select from "./components/Controls/Select";
+import Text from "./components/Controls/Text";
 
 class App extends Component {
   constructor(props) {
@@ -35,9 +37,36 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  showHtml(x) {
+    this.setState({ html: x }, this.getSampleText);
+  }
+
+  changeParas(number) {
+    this.setState({ paras: number }, this.getSampleText);
+  }
+
   render() {
     return (
       <div className="App">
+        <h1 className="text-center">React JS Text Generator</h1>
+        <hr />
+        <form className="form-inline">
+          <div className="form-group">
+            <label>Paragraphs:</label>
+            <Text
+              value={this.state.paras}
+              onChange={this.changeParas.bind(this)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Include HTML:</label>
+            <Select
+              value={this.state.html}
+              onChange={this.showHtml.bind(this)}
+            />
+          </div>
+        </form>
+        <br /> <br />
         <Output value={this.state.text} />
       </div>
     );
