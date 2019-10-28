@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 
+import Output from "./components/Output";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +36,11 @@ class App extends Component {
   }
 
   render() {
-    return <div className="App">Hello</div>;
+    return (
+      <div className="App">
+        <Output value={this.state.text} />
+      </div>
+    );
   }
 }
 
